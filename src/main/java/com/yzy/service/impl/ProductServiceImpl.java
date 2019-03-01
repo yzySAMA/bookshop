@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
     /**获得所有商品信息，并返回分页信息*/
     @Override
     public PageInfo<Product> getProducts(Integer pn) {
-        PageHelper.startPage(pn,5);
+        PageHelper.startPage(pn,10);
         List<Product> list = productMapper.findAllProduct();
         PageInfo<Product> page = new PageInfo(list,5);
         return page;
@@ -43,6 +43,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void productDel(String pid) {
         productMapper.deleteByPrimaryKey(pid);
+    }
+
+    /**添加商品*/
+    @Override
+    public void productAdd(Product product) {
+        productMapper.insertSelective(product);
     }
 
 

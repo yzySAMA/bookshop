@@ -6,12 +6,17 @@ import com.yzy.pojo.Category;
 import com.yzy.pojo.Product;
 import com.yzy.service.CategoryService;
 import com.yzy.service.ProductService;
+import com.yzy.utils.CommonsUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -46,14 +51,44 @@ public class ProductController {
 
     /**更新数据*/
     @RequestMapping("update.do")
-    public String productUpdate(Product product,@RequestParam(value = "pn")Integer pn){
+    public String productUpdate(Product product,@RequestParam(value = "pn")Integer pn,MultipartFile pictureFile) throws IOException {
+        //保存图片到G:\images
+        String name = CommonsUtils.getUUID();
+        //获得扩展名
+        String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+        pictureFile.transferTo(new File("G:\\images\\"+name+"."+ext));
+        product.setPimage(name+"."+ext);
         productService.productUpdate(product);
         return "redirect:productInfo.do?pn="+pn;
     }
 
+    /**删除数据*/
     @RequestMapping("productDel.do")
     public String productDel(String pid,@RequestParam(value = "pn")Integer pn){
         productService.productDel(pid);
         return "redirect:productInfo.do?pn="+pn;
+    }
+
+    @RequestMapping("addMsg.do")
+    public String findAllCategory(Model model){
+        List<Category> list = categoryService.findCategorys();
+        model.addAttribute("categoryList",list);
+        return "product_add";
+    }
+
+    /**商品添加*/
+    @RequestMapping("add.do")
+    public String productAdd(Product product, MultipartFile pictureFile) throws IOException {
+        //set pid
+        String pid = CommonsUtils.getUUID();
+        product.setPid(pid);
+        //保存图片到G:\images
+        String name = CommonsUtils.getUUID();
+        //获得扩展名
+        String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+        pictureFile.transferTo(new File("G:\\images\\"+name+"."+ext));
+        product.setPimage(name+"."+ext);
+        productService.productAdd(product);
+        return "redirect:productInfo.do";
     }
 }

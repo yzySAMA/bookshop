@@ -35,7 +35,8 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <!--表单提交-->
-            <form role="form" action="${pageContext.request.contextPath}/update.do?pn=${pn}" method="post">
+            <form role="form" action="${pageContext.request.contextPath}/update.do?pn=${pn}" method="post"
+                enctype="multipart/form-data">
                 <table class="table table-hover">
                    <tr>
                        <td>商品类型：</td>
@@ -71,6 +72,17 @@
                             <div class="form-group">
                                 <input type="text" name="price" class="form-control"
                                        id="exampleInputPassword2" placeholder="商品价格" value="${product.price}">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>商品图片：</td>
+                        <td>
+                            <c:if test="${product.pimage!=null}">
+                                <img height="100px" width="75px" src="${pageContext.request.contextPath}/pic/${product.pimage}">
+                            </c:if>
+                            <div class="form-group">
+                                <input type="file" name="pictureFile" class="form-control" id="exampleInputPassword4" >
                             </div>
                         </td>
                     </tr>

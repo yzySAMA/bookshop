@@ -33,8 +33,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2 col-md-offset-10">
-            <button type="button" class="btn  btn-primary">新增</button>
-            <button type="button" class="btn  btn-danger">删除</button>
+          <a href="${pageContext.request.contextPath}/addMsg.do"><button type="button" class="btn  btn-primary">新增</button></a>
+             <button type="button" class="btn  btn-danger" name="delBtn" >删除</button>
         </div>
     </div>
 
@@ -44,6 +44,7 @@
             <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                 <thead>
                 <tr role="row">
+                    <th  tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"></th>
                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">pid</th>
                     <th  tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">书名(pname)</th>
                     <th  tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">价格(price)</th>
@@ -56,11 +57,16 @@
                 <tbody>
                     <c:forEach items="${page.list}" var="product">
                         <tr role="row" >
+                            <td>
+                                <input class="checkbox" type="checkbox">
+                            </td>
                             <td class="sorting_1">${product.pid}</td>
                             <td>${product.pname}</td>
-                            <td>${product.price}</td>
-                            <td>${product.pimage}</td>
-                            <td>${product.pdesc}</td>
+                            <td>￥${product.price}</td>
+                            <td>
+                                <img height="100px" width="75px" src="${pageContext.request.contextPath}/pic/${product.pimage}">
+                            </td>
+                            <td width="200px">${product.pdesc}</td>
                             <td>${product.category.cname}</td>
                             <td>
                                 <a href="${pageContext.request.contextPath}/productMsg.do?pid=${product.pid}&pn=${page.pageNum}">
@@ -173,6 +179,8 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
+
+
   });
 </script>
 </body>

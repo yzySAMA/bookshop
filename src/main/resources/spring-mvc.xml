@@ -16,6 +16,12 @@
       <!--静态资源默认servlet配置-->
       <mvc:default-servlet-handler/>
 
+      <!--上传图片配置实现类-->
+      <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+          <!--上传图片的大小 B-->
+          <property name="maxUploadSize" value="5000000"></property>
+      </bean>
+
       <!--配置jsp 显示ViewResolver-->
       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
           <property name="prefix" value="/WEB-INF/views/"/>

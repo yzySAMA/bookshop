@@ -17,4 +17,7 @@ public interface ProductService {
 
     /**删除商品*/
     void productDel(String pid);
+
+    /**添加商品*/
+    void productAdd(Product product);
 }
