@@ -5,7 +5,12 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">觉老师的书店</a>
+            <img width="50px" height="30px" src="assets/img/pimage/113.png">
+            <a class="navbar-brand" href="index">觉老师的书店</a>
+
+
+
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

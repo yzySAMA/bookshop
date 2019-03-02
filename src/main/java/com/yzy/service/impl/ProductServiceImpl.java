@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yzy.dao.ProductMapper;
 import com.yzy.pojo.Product;
+import com.yzy.pojo.ProductExample;
 import com.yzy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,22 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void productAdd(Product product) {
         productMapper.insertSelective(product);
+    }
+
+    /**首页商品展示*/
+    @Override
+    public List<Product> findHotProduct() {
+        return productMapper.findIndexProduct();
+    }
+
+    /**同种类型的商品展示*/
+    @Override
+    public List<Product> productInfoByCid(String cid) {
+        ProductExample example=new ProductExample();
+        ProductExample.Criteria criteria = example.createCriteria();
+        criteria.andCidEqualTo(cid);
+        List<Product> list = productMapper.selectByExample(example);
+        return list;
     }
 
 

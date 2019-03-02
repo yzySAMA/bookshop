@@ -18,4 +18,10 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> list = categoryMapper.selectByExample(null);
         return list;
     }
+
+    @Override
+    public Category findCategoryByCid(String cid) {
+        Category category = categoryMapper.selectByPrimaryKey(cid);
+        return category;
+    }
 }

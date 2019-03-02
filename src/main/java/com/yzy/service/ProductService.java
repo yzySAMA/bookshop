@@ -3,6 +3,7 @@ package com.yzy.service;
 import com.github.pagehelper.PageInfo;
 import com.yzy.pojo.Product;
 
+import java.util.List;
 
 
 public interface ProductService {
@@ -20,4 +21,10 @@ public interface ProductService {
 
     /**添加商品*/
     void productAdd(Product product);
+
+    /**首页商品展示*/
+    List<Product> findHotProduct();
+
+    /**同种类型的商品展示*/
+    List<Product> productInfoByCid(String cid);
 }

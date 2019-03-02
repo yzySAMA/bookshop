@@ -20,6 +20,10 @@
       FROM product p LEFT JOIN category c ON p.cid=c.cid
   </select>
 
+  <!--查询商品在首页展示-->
+  <select id="findIndexProduct" resultType="Product">
+        select * from product limit 0,9
+  </select>
   <resultMap id="BaseResultMap" type="com.yzy.pojo.Product" >
     <id column="pid" property="pid" jdbcType="VARCHAR" />
     <result column="pname" property="pname" jdbcType="VARCHAR" />

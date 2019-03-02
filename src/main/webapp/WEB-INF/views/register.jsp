@@ -21,7 +21,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="/index.jsp"><b>觉老师的书店</b></a>
+        <a href="index"><b>觉老师的书店</b></a>
     </div>
 
     <div class="register-box-body">

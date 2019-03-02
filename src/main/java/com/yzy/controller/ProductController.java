@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
-    /**查询商品信息*/
+    /**后台查询所有商品信息*/
     @RequestMapping("productInfo.do")
     public String getProducts(@RequestParam(value = "pn",defaultValue="1")Integer pn, Model model){
         //分页查询
@@ -69,6 +70,7 @@ public class ProductController {
         return "redirect:productInfo.do?pn="+pn;
     }
 
+    /**进入商品添加页面*/
     @RequestMapping("addMsg.do")
     public String findAllCategory(Model model){
         List<Category> list = categoryService.findCategorys();
@@ -90,5 +92,26 @@ public class ProductController {
         product.setPimage(name+"."+ext);
         productService.productAdd(product);
         return "redirect:productInfo.do";
+    }
+
+    /**首页商品展示*/
+    @RequestMapping("index")
+    public String index(Model model){
+       List<Product> list= productService.findHotProduct();
+        List<Category> categorys = categoryService.findCategorys();
+        model.addAttribute("hotProduct",list);
+        model.addAttribute("categoryList",categorys);
+        return "index";
+    }
+
+    /**同种类型的商品展示*/
+    @RequestMapping("productInfoByCid")
+    public String productInfoByCid(String cid,Model model){
+        List<Product> list=productService.productInfoByCid(cid);
+        Category category=categoryService.findCategoryByCid(cid);
+        model.addAttribute("productList",list);
+        model.addAttribute("category",category);
+
+        return "product_list";
     }
 }

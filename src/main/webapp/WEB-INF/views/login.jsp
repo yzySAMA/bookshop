@@ -20,7 +20,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="index.jsp"><b>觉老师的书店</b></a>
+        <a href="index"><b>觉老师的书店</b></a>
     </div>
 
     <!-- /.登陆界面 -->

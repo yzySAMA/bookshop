@@ -9,6 +9,8 @@ public interface ProductMapper {
 
     //获得所有商品信息
     List<Product> findAllProduct();
+    //获得商品首页商品信息
+    List<Product> findIndexProduct();
 
     int countByExample(ProductExample example);
 
@@ -31,4 +33,7 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+
+
 }
