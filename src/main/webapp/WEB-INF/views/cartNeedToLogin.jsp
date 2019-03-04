@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Title</title>
-    <meta http-equiv="refresh" content="5;url=login"/>
+    <meta http-equiv="refresh" content="3;url=login"/>
 </head>
 <body>
-    <h1>注册成功，5秒后跳转到登陆页面</h1>
+<h1 align="center">请先登录！（3秒后跳转）</h1>
 </body>
 </html>

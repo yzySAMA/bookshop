@@ -44,7 +44,7 @@ public class UserController {
         }else {
             //登陆成功
         session.setAttribute("user",user);
-        return "redirect:/index.jsp";
+        return "redirect:index";
         }
     }
 

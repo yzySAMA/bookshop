@@ -114,4 +114,13 @@ public class ProductController {
 
         return "product_list";
     }
+    
+    @RequestMapping("productInfoByPid")
+    public String productInfoByPid(String pid,Model model){
+        Product product = productService.findProductByPid(pid);
+        Category category = categoryService.findCategoryByCid(product.getCid());
+        model.addAttribute("product",product);
+        model.addAttribute("category",category);
+        return "product_info";
+    }
 }

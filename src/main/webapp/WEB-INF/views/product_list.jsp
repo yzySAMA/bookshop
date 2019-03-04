@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>商品列表</title>
+    <title>${category.cname}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -17,19 +17,24 @@
 <body style="background-color: #f0f3ef">
 <!-- Navigation head文件 -->
 <jsp:include page="header.jsp"/>
-<div  style="background-color: #696969;">
-        <h2 style="color: white">---->${category.cname}</h2>
-</div>
+
 <div class="container">
+    <div class="row">
+        <div
+                style="border: 1px solid #e4e4e4; width: 930px; margin-bottom: 10px; margin: 0 auto; padding: 10px; margin-bottom: 10px;">
+            <a href="index">首页&nbsp;&nbsp;&gt;</a> <a href="productInfoByCid?cid=${category.cid}">${category.cname}&nbsp;&nbsp;&gt;</a>
+        </div>
+    </div>
+    <hr>
     <!--商品展示-->
     <div class="row">
         <c:forEach items="${productList}" var="product" >
             <div class=" col-md-4" style="margin-bottom: 20px">
                 <div class="card ">
-                    <a href="#" style="text-align: center"><img class="card-img-top" style="width: 135px; height: 200px;" src="${pageContext.request.contextPath}/pic/${product.pimage}" alt=""></a>
+                    <a href="${pageContext.request.contextPath}/productInfoByPid?pid=${product.pid}" style="text-align: center"><img class="card-img-top" style="width: 135px; height: 200px;" src="${pageContext.request.contextPath}/pic/${product.pimage}" alt=""></a>
                     <div class="card-body" style="height: 184px">
                         <h4 class="card-title" style="text-align: center">
-                            <a href="#">${product.pname}</a>
+                            <a href="${pageContext.request.contextPath}/productInfoByPid?pid=${product.pid}">${product.pname}</a>
                         </h4>
                         <h5 style="text-align: center">$${product.price}</h5>
                         <p class="card-text">${product.pdesc}</p>
@@ -39,6 +44,16 @@
             </div>
         </c:forEach>
 
+    </div>
+
+    <div class="row" style="margin-bottom: 20px">
+        <div class=" col-lg-11 ">
+            <hr>
+        </div>
+        <div class=" col-lg-1 ">
+
+            <a><button class="btn btn-primary" style="width: 100px">返回首页</button></a>
+        </div>
     </div>
 </div>
 
