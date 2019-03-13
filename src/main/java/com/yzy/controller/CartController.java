@@ -25,9 +25,9 @@ public class CartController {
     @RequestMapping("cartAdd")
     public String cartAdd(String pid, Integer buyNum, HttpSession session) {
         User user = (User) session.getAttribute("user");
-//        if (user == null) {
-//            return "cartNeedToLogin";
-//        } else {
+        if (user == null) {
+            return "cartNeedToLogin";
+        } else {
             Product product = productService.findProductByPid(pid);
             CartItem cartItem = new CartItem();
             cartItem.setProduct(product);
@@ -62,7 +62,7 @@ public class CartController {
                 session.setAttribute("cart", cart);
 
             return "redirect:cart";
-       // }
+        }
     }
 
     @RequestMapping("cartItemDel")

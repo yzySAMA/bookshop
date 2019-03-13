@@ -36,7 +36,7 @@
                         <h4 class="card-title" style="text-align: center">
                             <a href="${pageContext.request.contextPath}/productInfoByPid?pid=${product.pid}">${product.pname}</a>
                         </h4>
-                        <h5 style="text-align: center">$${product.price}</h5>
+                        <h5 style="text-align: center">￥${product.price}</h5>
                         <p class="card-text">${product.pdesc}</p>
                     </div>
 
@@ -52,7 +52,7 @@
         </div>
         <div class=" col-lg-1 ">
 
-            <a><button class="btn btn-primary" style="width: 100px">返回首页</button></a>
+            <a href="index"><button class="btn btn-primary" style="width: 100px">返回首页</button></a>
         </div>
     </div>
 </div>
