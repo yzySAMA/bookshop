@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/iCheck/square/blue.css">
 
 </head>
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" style=" background-image:url('/assets/img/pimage/ts1.jpg') ">
 <div class="register-box">
     <div class="register-logo">
-        <a href="index"><b>觉老师的书店</b></a>
+        <a href="index"><b style="color: white">觉老师的书店</b></a>
     </div>
 
     <div class="register-box-body">
@@ -75,13 +75,7 @@
             </div>
         </form>
 
-        <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-                Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-                Google+</a>
-        </div>
+
 
         <a href="login" class="text-center">我已经拥有了一个账号</a>
     </div>
@@ -112,11 +106,10 @@
         //规则的名称
       "checkUsername",
       //校验的函数
-
       function (value,element,params) {
         $.ajax({
           "async":false,
-          "url":"/checkUsername",
+          "url":"${pageContext.request.contextPath}/checkUsername",
           "data":{"username":value},
           "type":"POST",
           "dataType":"json",

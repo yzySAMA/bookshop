@@ -26,8 +26,11 @@
 
         <div class="col-md-3">
             <form style="margin-top: 20px;margin-bottom: 20px" >
-                <input type="text"  placeholder="寻一本好书">
-                <button type="submit" class="s btn-primary">搜索</button>
+                <div  class="form-group" style="position: relative">
+                    <input id="search" type="text"  placeholder="寻一本好书">
+                    <div id="showDiv" style="position: absolute;z-index: 100; width:181px;height: 150px;background-color: white;display: none"></div>
+                    <button id="searchBtn" type="button" class="btn btn-primary">搜索</button>
+                </div>
             </form>
             <!-- 商品类别展示 -->
             <div class="list-group">
@@ -106,6 +109,51 @@
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  function overFn(obj){
+    $(obj).css("background","#DBEAF9");
+  }
+  function outFn(obj){
+    $(obj).css("background","white");
+  }
+  function clickFn(obj){
+    var text=$(obj).html();
+    $("#search").val(text);
+    $("#showDiv").css("display","none");
+  }
 
+    $("#search").keyup(function() {
+        //获得输入框中的内容
+       var pname=$(this).val();
+
+       var url="${pageContext.request.contextPath}/getProductBypname.do";
+       var param={"pname":pname};
+       var content="";
+        //根据输入框的内容进行模糊查询
+      $.getJSON(url,param,function (data) {
+            if(pname!=null && pname!=''){
+
+              for (var i=0;i<data.length;i++){
+                content+="<div class='show' style='padding:5px;cursor: pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].pname+"</div>";
+              }
+                //将查询到的结果放到showDiv中
+              $("#showDiv").html(content);
+              $("#showDiv").css("display","block");
+            }else {
+              $("#showDiv").css("display","none");
+            }
+      });
+    });
+
+    $("#searchBtn").click(function () {
+        var pname=$("#search").val();
+        console.log(pname)
+        if(pname!=null && pname!=''){
+            location.href="${pageContext.request.contextPath}/productInfoByPname.do?pname="+pname;
+        }
+    })
+
+
+</script>
 </body>
 </html>

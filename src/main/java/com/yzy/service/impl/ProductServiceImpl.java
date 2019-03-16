@@ -68,5 +68,22 @@ public class ProductServiceImpl implements ProductService {
         return list;
     }
 
+    /**根据商品名模糊查询*/
+    @Override
+    public List<Product> getProductBypname(String pname) {
+        List<Product> products=productMapper.getProductBypname(pname);
+        return products;
+    }
+
+    @Override
+    public List<Product> findProductByPname(String pname) {
+        ProductExample example=new ProductExample();
+        ProductExample.Criteria criteria = example.createCriteria();
+        pname="%"+pname+"%";
+        criteria.andPnameLike(pname);
+        List<Product> products = productMapper.selectByExample(example);
+        return products;
+    }
+
 
 }

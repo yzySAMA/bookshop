@@ -28,12 +28,13 @@
                     <li class="nav-item " >
                         <a class="nav-link" style="color: white" href="#">欢迎您！${user.name}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="loginout.do">注销</a>
+                    </li>
                 </c:if>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">消息</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">购物车</a>
+                    <a class="nav-link" href="cart">购物车</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">我的订单</a>

@@ -1,6 +1,5 @@
 package com.yzy.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yzy.pojo.Category;
 import com.yzy.pojo.Product;
@@ -13,11 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.Cookie;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -114,7 +114,8 @@ public class ProductController {
 
         return "product_list";
     }
-    
+
+    /**单个商品页面展示*/
     @RequestMapping("productInfoByPid")
     public String productInfoByPid(String pid,Model model){
         Product product = productService.findProductByPid(pid);
@@ -122,5 +123,30 @@ public class ProductController {
         model.addAttribute("product",product);
         model.addAttribute("category",category);
         return "product_info";
+    }
+
+    /**根据商品名模糊查询*/
+    @RequestMapping("getProductBypname.do")
+    @ResponseBody
+    public List<Product> getProductBypname(String pname) throws UnsupportedEncodingException {
+        List<Product> products=productService.getProductBypname(pname);
+        return products;
+    }
+
+    /**通过搜索查询数据*/
+    @RequestMapping("productInfoByPname.do")
+    public String productInfoByPname(String pname,Model model){
+        System.out.println(pname);
+        List<Product> products=productService.findProductByPname(pname);
+        System.out.println(products);
+        Category category=null;
+        if(products!=null&&products.size()>0){
+            String cid = products.get(0).getCid();
+            category=categoryService.findCategoryByCid(cid);
+        }
+        model.addAttribute("productList",products);
+        model.addAttribute("category",category);
+
+        return "product_list";
     }
 }

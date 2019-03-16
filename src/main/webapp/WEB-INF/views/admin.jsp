@@ -73,8 +73,8 @@
                                     <button type="button" class="btn  btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                     </button>
                                 </a>
-                                <a href="${pageContext.request.contextPath}/productDel.do?pid=${product.pid}&pn=${page.pageNum}">
-                                    <button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                <a  href="${pageContext.request.contextPath}/productDel.do?pid=${product.pid}&pn=${page.pageNum}">
+                                    <button id="deleteBtn" type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
                                     </button>
                                 </a>
 
@@ -179,7 +179,6 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
-
 
   });
 </script>

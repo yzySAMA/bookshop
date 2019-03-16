@@ -27,4 +27,9 @@ public interface ProductService {
 
     /**同种类型的商品展示*/
     List<Product> productInfoByCid(String cid);
+
+    /**根据商品名模糊查询*/
+    List<Product> getProductBypname(String pname);
+
+    List<Product> findProductByPname(String pname);
 }

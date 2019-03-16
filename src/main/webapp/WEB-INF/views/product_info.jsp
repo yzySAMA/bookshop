@@ -106,9 +106,12 @@
 <script>
     $("#cartBtn").click(function () {
         var buyNum = $("#buyNum").val();
+      if(confirm("您确定要把此图书添加到购物车吗")){
         location.href="${pageContext.request.contextPath}/cartAdd?pid=${product.pid}&buyNum="+buyNum;
+      }
 
     });
+
 </script>
 </body>
 </html>

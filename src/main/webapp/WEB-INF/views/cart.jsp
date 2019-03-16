@@ -13,6 +13,9 @@
     <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/assets/css/shop-homepage.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <!-- Navigation head文件 -->
@@ -24,7 +27,7 @@
                     <h1>购物车详情</h1>
                 </div>
                 <div class="col-md-2 col-md-offset-6" >
-                    <a href="${pageContext.request.contextPath}/cartDel"><button class="btn btn-danger">清空购物车</button></a>
+                    <button id="deletesBtn" class="btn btn-danger">清空购物车</button>
                 </div>
             </div>
             <div class="row">
@@ -55,7 +58,16 @@
                                     ${entry.value.subTotal}
                             </td>
                             <td>
-                                <a href="cartItemDel?pid=${entry.value.product.pid}"><button class="btn btn-danger">删除</button></a>
+                                <a href="#"><button id="deleteBtn" class="btn btn-danger">删除</button></a>
+                                <script>
+                                  $("#deleteBtn").click(function () {
+                                    var flag=confirm("确认删除吗");
+                                    if(flag){
+                                      location.href="cartItemDel?pid=${entry.value.product.pid}";
+                                      alert("删除成功")
+                                    }
+                                  });
+                                </script>
                             </td>
                         </tr>
                     </c:forEach>
@@ -64,7 +76,7 @@
             <div class="row">
                 <div class="col-md-2 col-md-offset-10">
                     <span>总价：￥${cart.total}</span>
-                    <button class="btn btn-primary">提交订单</button>
+                    <a href="order_info"><button class="btn btn-primary">提交订单</button></a>
                 </div>
             </div>
         </div>
@@ -73,11 +85,20 @@
         <img src="${pageContext.request.contextPath}/assets/img/pimage/cart.gif">
         <a href="index"><button class="btn btn-primary">返回主页继续购物</button></a>
     </c:if>
+<br><br><br><br><br><br>
 <!-- Footer  结尾 -->
 <jsp:include page="footer.jsp"/>
 
-<!-- Bootstrap core JavaScript -->
-<script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+   $("#deletesBtn").click(function () {
+       if(confirm("确定要清空购物车吗")){
+          location.href="${pageContext.request.contextPath}/cartDel";
+          alert("清空成功");
+        }
+   })
+
+
+</script>
+
 </body>
 </html>

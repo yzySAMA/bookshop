@@ -11,6 +11,9 @@ public interface ProductMapper {
     List<Product> findAllProduct();
     //获得商品首页商品信息
     List<Product> findIndexProduct();
+    /**根据商品名模糊查询*/
+    List<Product> getProductBypname(@Param("pname") String pname);
+
 
     int countByExample(ProductExample example);
 
@@ -33,7 +36,6 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
-
 
 
 }

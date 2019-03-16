@@ -84,4 +84,11 @@ public class UserController {
             return "admin_login";
         }
     }
+
+    /**注销*/
+    @RequestMapping("/loginout.do")
+    public String loginout(HttpSession session){
+        session.removeAttribute("user");
+        return "redirect:index";
+    }
 }

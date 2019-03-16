@@ -17,10 +17,10 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/iCheck/square/blue.css"/>
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style=" background-image:url('/assets/img/pimage/ts1.jpg') ">
 <div class="login-box">
     <div class="login-logo">
-        <a href="index"><b>觉老师的书店</b></a>
+        <a href="index"><b style="color: white">觉老师的书店</b></a>
     </div>
 
     <!-- /.登陆界面 -->
