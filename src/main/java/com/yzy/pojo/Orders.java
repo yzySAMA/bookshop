@@ -1,30 +1,30 @@
 package com.yzy.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
     private String oid;
-
     private Date ordertime;
-
     private Double total;
-
     private Integer state;
 
     private String address;
-
     private String name;
-
     private String telephone;
 
-    private String uid;
+    private User user;//该订单属于哪个用户
+
+    //该订单中有多少订单项
+    List<Orderitem> orderitems=new ArrayList<>();
 
     public String getOid() {
         return oid;
     }
 
     public void setOid(String oid) {
-        this.oid = oid == null ? null : oid.trim();
+        this.oid = oid;
     }
 
     public Date getOrdertime() {
@@ -56,7 +56,7 @@ public class Orders {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public String getName() {
@@ -64,7 +64,7 @@ public class Orders {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getTelephone() {
@@ -72,14 +72,23 @@ public class Orders {
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone == null ? null : telephone.trim();
+        this.telephone = telephone;
     }
 
-    public String getUid() {
-        return uid;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid == null ? null : uid.trim();
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Orderitem> getOrderitems() {
+        return orderitems;
+    }
+
+    public void setOrderitems(List<Orderitem> orderitems) {
+        this.orderitems = orderitems;
     }
 }

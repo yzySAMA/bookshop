@@ -65,6 +65,7 @@ public class CartController {
         }
     }
 
+    /**删除单个购物项*/
     @RequestMapping("cartItemDel")
     public String cartItemDel(String pid,HttpSession session){
         Cart cart= (Cart) session.getAttribute("cart");
@@ -78,6 +79,7 @@ public class CartController {
         return "redirect:cart";
     }
 
+    /**清空购物车*/
     @RequestMapping("cartDel")
     public String cartDel(HttpSession session){
         session.removeAttribute("cart");

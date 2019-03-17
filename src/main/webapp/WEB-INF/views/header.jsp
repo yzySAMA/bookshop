@@ -32,12 +32,18 @@
                         <a class="nav-link" href="loginout.do">注销</a>
                     </li>
                 </c:if>
-
+                <c:if test="${!empty user}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart">购物车</a>
+                    </li>
+                </c:if>
+                <c:if test="${empty user}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cartNeedToLogin">购物车</a>
+                    </li>
+                </c:if>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart">购物车</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">我的订单</a>
+                    <a class="nav-link" href="myOrders.do">我的订单</a>
                 </li>
             </ul>
         </div>

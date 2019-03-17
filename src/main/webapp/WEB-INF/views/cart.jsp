@@ -17,7 +17,7 @@
     <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body >
 <!-- Navigation head文件 -->
 <jsp:include page="header.jsp"/>
     <c:if test="${!empty cart.cartItemMap}">
@@ -76,7 +76,7 @@
             <div class="row">
                 <div class="col-md-2 col-md-offset-10">
                     <span>总价：￥${cart.total}</span>
-                    <a href="order_info"><button class="btn btn-primary">提交订单</button></a>
+                    <a href="${pageContext.request.contextPath}/submitOrder.do"><button class="btn btn-primary">提交订单</button></a>
                 </div>
             </div>
         </div>

@@ -82,8 +82,8 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card ">
                             <a href="${pageContext.request.contextPath}/productInfoByPid?pid=${product.pid}" style="text-align: center"><img class="card-img-top" style="width: 135px; height: 200px;" src="${pageContext.request.contextPath}/pic/${product.pimage}" alt=""></a>
-                            <div class="card">
-                                <h4 class="card-title" style="text-align: center">
+                            <div class="card" style="height: 93px;">
+                                <h4 class="card-title" style="text-align: center;">
                                     <a href="${pageContext.request.contextPath}/productInfoByPid?pid=${product.pid}" >${product.pname}</a>
                                 </h4>
                                 <h5 style="text-align: center">￥${product.price}</h5>

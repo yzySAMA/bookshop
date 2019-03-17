@@ -14,18 +14,18 @@
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/assets/css/shop-homepage.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color:#f2f2f2">
 <!-- Navigation head文件 -->
 <jsp:include page="header.jsp"/>
 
-<div class="container">
-    <div class="row">
+<div class="container" style="margin-top: 20px">
+    <div class="row" style="margin:0px;background-color: white ">
         <div style="margin: 0 auto; margin-top: 50px; width: 950px;">
-            <strong>订单详情</strong>
+            <h3>订单详情</h3>
             <table class="table table-hover table-bordered">
                 <tbody>
                 <tr class="warning">
-                    <th colspan="5">订单编号:9005</th>
+                    <th colspan="5">订单编号:${order.oid}</th>
                 </tr>
                 <tr class="warning">
                     <th>图片</th>
@@ -34,57 +34,61 @@
                     <th>数量</th>
                     <th>小计</th>
                 </tr>
-                <tr class="active">
-                    <td  style="text-align: center"><input type="hidden" name="id"
-                                                      value="22"> <img src="${pageContext.request.contextPath}/pic/454a2e.jpg" width="50"
-                                                                       height="80"></td>
-                    <td width="30%"><a target="_blank"> 你好，旧时光</a></td>
-                    <td width="20%">￥298.00</td>
-                    <td width="10%">2</td>
-                    <td width="15%"><span class="subtotal">￥596.00</span></td>
-                </tr>
+                <c:forEach items="${order.orderitems}" var="orderitem">
+                    <tr class="active">
+                        <td  style="text-align: center"><input type="hidden" name="id"
+                                                               value="22"> <img src="${pageContext.request.contextPath}/pic/${orderitem.product.pimage}" width="50"
+                                                                                height="80"></td>
+                        <td width="30%"><a target="_blank">${orderitem.product.pname}</a></td>
+                        <td width="20%">￥${orderitem.product.price}</td>
+                        <td width="10%">${orderitem.count}</td>
+                        <td width="15%"><span class="subtotal">￥${orderitem.subtotal}</span></td>
+                    </tr>
+                </c:forEach>
+
                 </tbody>
             </table>
         </div>
 
         <div style="text-align: left; margin-right: 120px;">
-            商品金额: <strong style="color: #ff6600;">￥596.00元</strong>
+            商品金额: <strong style="color: #ff6600;">￥${order.total}元</strong>
         </div>
 
     </div>
 
-    <div>
+    <div style="background-color: white;margin-top: 20px" >
         <hr />
-        <form class="form-horizontal" id="orderForm"
+        <h3 style="padding-left: 77px">收货人信息</h3>
+        <form class="form-horizontal" id="orderForm" action="${pageContext.request.contextPath}/confirmOrder.do" method="post"
               style="margin-top: 5px; margin-left: 150px;">
+            <input type="hidden" name="oid" value="${order.oid}">
             <div class="form-group">
                 <label for="username" class="col-sm-1 control-label">地址</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="username"
-                           placeholder="请输入收货地址">
+                    <input type="text" class="form-control" id="username" name="address"
+                           placeholder="请输入收货地址" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" id="inputPassword3"
-                           placeholder="请输收货人">
+                    <input type="text" class="form-control" id="inputPassword3" name="name"
+                           placeholder="请输收货人" value="${user.username}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="confirmpwd" class="col-sm-1 control-label">电话</label>
                 <div class="col-sm-5">
-                    <input type="password" class="form-control" id="confirmpwd"
-                           placeholder="请输入联系方式">
+                    <input type="text" class="form-control" id="confirmpwd" name="telephone"
+                           placeholder="请输入联系方式" value="${user.telephone}">
                 </div>
             </div>
-        </form>
+
 
         <hr />
-
-        <div style="margin-top: 5px; margin-left: 150px;">
-            <strong>选择银行：</strong>
-            <p>
+        <div style="background-color: white;">
+            <h3 style="padding-left: 77px">选择银行：</h3>
+            <p style="padding-left: 64px">
                 <br /> <input type="radio" name="pd_FrpId" value="ICBC-NET-B2C"
                               checked="checked" />工商银行 <img src="assets/bank_img/icbc.bmp"
                                                             align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
@@ -106,14 +110,15 @@
             </p>
             <hr />
             <p style="text-align: right; margin-right: 100px;">
-                <a href="javascript:document.getElementById('orderForm').submit();">
-                    <button class="btn btn-primary">订单支付</button>
-                </a>
+                <button id="payBtn" class="btn btn-primary">订单支付</button>
             </p>
             <hr />
 
         </div>
+
+        </form>
     </div>
+
 
 </div>
 
@@ -126,6 +131,11 @@
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    $("#payBtn").click(function () {
+        $("#orderForm").submit();
+    });
+</script>
 </body>
 </html>
 

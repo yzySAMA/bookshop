@@ -1,5 +1,7 @@
 package com.yzy.pojo;
 
+import org.springframework.core.annotation.Order;
+
 public class Orderitem {
     private String itemid;
 
@@ -7,16 +9,16 @@ public class Orderitem {
 
     private Double subtotal;
 
-    private String pid;
+    private Product product;
 
-    private String oid;
+    private Orders orders;
 
     public String getItemid() {
         return itemid;
     }
 
     public void setItemid(String itemid) {
-        this.itemid = itemid == null ? null : itemid.trim();
+        this.itemid = itemid;
     }
 
     public Integer getCount() {
@@ -35,19 +37,19 @@ public class Orderitem {
         this.subtotal = subtotal;
     }
 
-    public String getPid() {
-        return pid;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getOid() {
-        return oid;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setOid(String oid) {
-        this.oid = oid == null ? null : oid.trim();
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 }

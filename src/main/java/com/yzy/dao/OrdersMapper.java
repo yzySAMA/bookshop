@@ -1,30 +1,21 @@
 package com.yzy.dao;
 
+import com.yzy.pojo.Orderitem;
 import com.yzy.pojo.Orders;
-import com.yzy.pojo.OrdersExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface OrdersMapper {
-    int countByExample(OrdersExample example);
 
-    int deleteByExample(OrdersExample example);
+    void addOrders(Orders order);
 
-    int deleteByPrimaryKey(String oid);
+    void updateOrders(Orders order);
 
-    int insert(Orders record);
+    void updateOrderState(@Param("oid") String r6_order);
 
-    int insertSelective(Orders record);
+    List<Orders> findAllOrders(String uid);
 
-    List<Orders> selectByExample(OrdersExample example);
-
-    Orders selectByPrimaryKey(String oid);
-
-    int updateByExampleSelective(@Param("record") Orders record, @Param("example") OrdersExample example);
-
-    int updateByExample(@Param("record") Orders record, @Param("example") OrdersExample example);
-
-    int updateByPrimaryKeySelective(Orders record);
-
-    int updateByPrimaryKey(Orders record);
+    List<Map<String, Object>> findAllOrderItemByOid(String oid);
 }
