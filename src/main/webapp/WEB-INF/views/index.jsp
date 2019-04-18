@@ -132,7 +132,6 @@
         //根据输入框的内容进行模糊查询
       $.getJSON(url,param,function (data) {
             if(pname!=null && pname!=''){
-
               for (var i=0;i<data.length;i++){
                 content+="<div class='show' style='padding:5px;cursor: pointer' onclick='clickFn(this)' onmouseover='overFn(this)' onmouseout='outFn(this)'>"+data[i].pname+"</div>";
               }
@@ -142,6 +141,8 @@
             }else {
               $("#showDiv").css("display","none");
             }
+        if(data==null||data.length==0)
+          $("#showDiv").css("display","none");
       });
     });
 

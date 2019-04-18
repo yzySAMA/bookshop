@@ -32,9 +32,8 @@
 <!--/页面主体-->
 <div class="container">
     <div class="row">
-        <div class="col-md-2 col-md-offset-10">
-          <a href="${pageContext.request.contextPath}/addMsg.do"><button type="button" class="btn  btn-primary">新增</button></a>
-             <button type="button" class="btn  btn-danger" name="delBtn" >删除</button>
+        <div class="col-md-2 col-md-offset-9">
+          <a href="${pageContext.request.contextPath}/addMsg.do"><button type="button" style="width: 100%;" class="btn btn-primary">新增</button></a>
         </div>
     </div>
 
@@ -44,7 +43,6 @@
             <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                 <thead>
                 <tr role="row">
-                    <th  tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"></th>
                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">pid</th>
                     <th  tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">书名(pname)</th>
                     <th  tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">价格(price)</th>
@@ -57,10 +55,7 @@
                 <tbody>
                     <c:forEach items="${page.list}" var="product">
                         <tr role="row" >
-                            <td>
-                                <input class="checkbox" type="checkbox">
-                            </td>
-                            <td class="sorting_1">${product.pid}</td>
+                            <td id="pid" class="sorting_1">${product.pid}</td>
                             <td>${product.pname}</td>
                             <td>￥${product.price}</td>
                             <td>
@@ -73,10 +68,10 @@
                                     <button type="button" class="btn  btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                     </button>
                                 </a>
-                                <a  href="${pageContext.request.contextPath}/productDel.do?pid=${product.pid}&pn=${page.pageNum}">
-                                    <button id="deleteBtn" type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                               <%-- <a  href="${pageContext.request.contextPath}/productDel.do?pid=${product.pid}&pn=${page.pageNum}">
+                                </a>--%>
+                                    <button id="deleteBtn"  class="btn  btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
                                     </button>
-                                </a>
 
                             </td>
                         </tr>
@@ -151,9 +146,6 @@
 <!--页面主体/-->
 
 
-
-
-
 <!-- jQuery 3 -->
 <script src="${pageContext.request.contextPath}/assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -179,8 +171,15 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
-
+    $("#deleteBtn").click(function(){
+        alert(1)
+      console.log(1);
+      var pid=$("#pid").html();
+      console.log(pid);
+    });
   });
+
+
 </script>
 </body>
 </html>

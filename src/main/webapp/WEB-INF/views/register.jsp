@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/iCheck/square/blue.css">
 
 </head>
-<body class="hold-transition register-page" style=" background-image:url('/assets/img/pimage/ts1.jpg') ">
+<body class="hold-transition register-page" style=" background-image:url('${pageContext.request.contextPath}/assets/img/pimage/ts1.jpg') ">
 <div class="register-box">
     <div class="register-logo">
         <a href="index"><b style="color: white">觉老师的书店</b></a>
