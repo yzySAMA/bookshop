@@ -41,11 +41,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> 记住我
-                        </label>
-                    </div>
+
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
@@ -64,7 +60,6 @@
         </div>
         <!-- /.social-auth-links -->
 
-        <a href="#">忘记密码？</a><br>
         <a href="register" class="text-center">注册一个新的账号</a>
     </div>
 

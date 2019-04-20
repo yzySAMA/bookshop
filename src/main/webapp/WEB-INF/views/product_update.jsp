@@ -70,7 +70,7 @@
                         <td>商品价格：</td>
                         <td>
                             <div class="form-group">
-                                <input type="text" name="price" class="form-control"
+                                <input type="text" name="price" class="form-control price"
                                        id="exampleInputPassword2" placeholder="商品价格" value="${product.price}">
                             </div>
                         </td>
@@ -97,7 +97,7 @@
                 </table>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">更新</button>
+                    <button type="submit" class="update btn btn-primary">更新</button>
                 </div>
             </form>
         </div>
@@ -129,6 +129,24 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
+    $(".update").click(function () {
+      alert("更新成功！")
+    })
+  });
+
+  var record={
+    num:""
+  }
+  $(".price").keyup(function () {
+    var decimalReg=/^\d{0,8}\.{0,1}(\d{1,2})?$/;//var decimalReg=/^[-\+]?\d{0,8}\.{0,1}(\d{1,2})?$/;
+    if(this.value!=""&&decimalReg.test(this.value)){
+      record.num=this.value;
+    }else{
+      if(this.value!=""){
+        this.value=record.num;
+      }
+    }
+
   });
 </script>
 </body>

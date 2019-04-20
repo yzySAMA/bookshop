@@ -51,7 +51,7 @@
                 <div
                         style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
                     购买数量: <input id="buyNum" name="buyNum" value="1"
-                                 maxlength="4" size="10" type="text">
+                                 maxlength="4" size="10" type="number" onkeyup="this.value=this.value.replace(/[^-|\d*]/,'')">
                 </div>
 
                 <div style="margin: 20px 0 10px 0;; text-align: center;">
@@ -107,10 +107,20 @@
     $("#cartBtn").click(function () {
         var buyNum = $("#buyNum").val();
       if(confirm("您确定要把此图书添加到购物车吗")){
-        location.href="${pageContext.request.contextPath}/cartAdd?pid=${product.pid}&buyNum="+buyNum;
-      }
+        var $buyNum=$("#buyNum").val();
+        if($buyNum==null||$buyNum<=0){
+          alert("请输入正确的购买数量!");
+          return;
+        }
 
+
+
+        location.href="${pageContext.request.contextPath}/cartAdd?pid=${product.pid}&buyNum="+buyNum;
+
+      }
     });
+
+
 
 </script>
 </body>

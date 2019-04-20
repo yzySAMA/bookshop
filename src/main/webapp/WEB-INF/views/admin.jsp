@@ -32,7 +32,19 @@
 <!--/页面主体-->
 <div class="container">
     <div class="row">
-        <div class="col-md-2 col-md-offset-9">
+        <%--模糊查询--%>
+
+            <div style="padding-right: 0px" class="col-md-4 col-md-offset-5 ">
+                <input type="text" name="search" class="form-control" placeholder="Search">
+            </div>
+            <div style="padding-left: 0px" class="col-md-1 ">
+                <button name="search" type="button" class="btn btn-success search">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                   查询</button>
+            </div>
+
+        <div class="col-md-2 ">
+
           <a href="${pageContext.request.contextPath}/addMsg.do"><button type="button" style="width: 100%;" class="btn btn-primary">新增</button></a>
         </div>
     </div>
@@ -55,7 +67,7 @@
                 <tbody>
                     <c:forEach items="${page.list}" var="product">
                         <tr role="row" >
-                            <td id="pid" class="sorting_1">${product.pid}</td>
+                            <td  class="pid sorting_1">${product.pid}</td>
                             <td>${product.pname}</td>
                             <td>￥${product.price}</td>
                             <td>
@@ -68,10 +80,10 @@
                                     <button type="button" class="btn  btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                     </button>
                                 </a>
-                               <%-- <a  href="${pageContext.request.contextPath}/productDel.do?pid=${product.pid}&pn=${page.pageNum}">
-                                </a>--%>
-                                    <button id="deleteBtn"  class="btn  btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                <a  href="${pageContext.request.contextPath}/productDel.do?pid=${product.pid}&pn=${page.pageNum}">
+                                    <button id=""  class="btn  btn-danger deleteBtn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
                                     </button>
+                                </a>
 
                             </td>
                         </tr>
@@ -166,19 +178,23 @@
 
 <script>
   $(function () {
+
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
-    $("#deleteBtn").click(function(){
-        alert(1)
-      console.log(1);
-      var pid=$("#pid").html();
-      console.log(pid);
+
+    $(".deleteBtn").click(function(){
+      alert("删除成功");
     });
   });
 
+    $(".search").click(function () {
+      var pname=$("input[name='search']").val();
+      console.log(pname)
+      location.href="${pageContext.request.contextPath}/searchByPname.do?pname="+pname;
+    })
 
 </script>
 </body>

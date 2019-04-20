@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLOutput;
 import java.util.List;
 
 @Controller
@@ -56,9 +57,11 @@ public class ProductController {
         //保存图片到G:\images
         String name = CommonsUtils.getUUID();
         //获得扩展名
-        String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
-        pictureFile.transferTo(new File("G:\\images\\"+name+"."+ext));
-        product.setPimage(name+"."+ext);
+        if(!pictureFile.getOriginalFilename().equals("")){
+            String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+            pictureFile.transferTo(new File("G:\\images\\"+name+"."+ext));
+            product.setPimage(name+"."+ext);
+        }
         productService.productUpdate(product);
         return "redirect:productInfo.do?pn="+pn;
     }
@@ -87,9 +90,12 @@ public class ProductController {
         //保存图片到G:\images
         String name = CommonsUtils.getUUID();
         //获得扩展名
-        String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
-        pictureFile.transferTo(new File("G:\\images\\"+name+"."+ext));
-        product.setPimage(name+"."+ext);
+        if(!pictureFile.getOriginalFilename().equals("")){
+            String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
+            pictureFile.transferTo(new File("G:\\images\\"+name+"."+ext));
+            product.setPimage(name+"."+ext);
+        }
+
         productService.productAdd(product);
         return "redirect:productInfo.do";
     }
@@ -148,5 +154,15 @@ public class ProductController {
         model.addAttribute("category",category);
 
         return "product_list";
+    }
+
+    /**后台模糊查询*/
+    @RequestMapping("searchByPname.do")
+    public String searchByPname(@RequestParam(value = "pn",defaultValue="1")Integer pn,String pname,Model model){
+        System.out.println(pname);
+       PageInfo<Product> page= productService.searchByPname(pn,pname);
+        System.out.println(page);
+        model.addAttribute("page",page);
+        return "admin";
     }
 }

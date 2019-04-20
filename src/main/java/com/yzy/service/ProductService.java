@@ -32,4 +32,7 @@ public interface ProductService {
     List<Product> getProductBypname(String pname);
 
     List<Product> findProductByPname(String pname);
+
+    /**后台根据商品名模糊查询*/
+    PageInfo<Product> searchByPname(Integer pn, String pname);
 }

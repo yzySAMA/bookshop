@@ -85,5 +85,20 @@ public class ProductServiceImpl implements ProductService {
         return products;
     }
 
+    @Override
+    public PageInfo<Product> searchByPname(Integer pn, String pname) {
+        /*PageHelper.startPage(pn,10);
+        List<Product> list = productMapper.findAllProduct();
+        PageInfo<Product> page = new PageInfo(list,5);
+        return page;*/
+        PageHelper.startPage(pn,5);
+        ProductExample example=new ProductExample();
+        ProductExample.Criteria criteria = example.createCriteria();
+        criteria.andPnameLike("%"+pname+"%");
+        List<Product> list = productMapper.selectByExample(example);
+        PageInfo<Product> page = new PageInfo(list,5);
+        return page;
+    }
+
 
 }

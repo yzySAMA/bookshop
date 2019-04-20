@@ -27,7 +27,7 @@
         <div class="col-md-3">
             <form style="margin-top: 20px;margin-bottom: 20px" >
                 <div  class="form-group" style="position: relative">
-                    <input id="search" type="text"  placeholder="寻一本好书">
+                    <input id="search" type="text"   placeholder="寻一本好书">
                     <div id="showDiv" style="position: absolute;z-index: 100; width:181px;height: 150px;background-color: white;display: none"></div>
                     <button id="searchBtn" type="button" class="btn btn-primary">搜索</button>
                 </div>

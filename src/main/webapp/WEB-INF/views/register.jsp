@@ -62,9 +62,7 @@
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> 我同意此<a href="#">协议条款</a>
-                        </label>
+
                     </div>
                 </div>
                 <!-- /.col -->
